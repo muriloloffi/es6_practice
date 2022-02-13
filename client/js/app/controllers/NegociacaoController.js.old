@@ -1,0 +1,38 @@
+class NegociacaoController {
+
+  constructor() {
+
+    let $ = document.querySelector.bind(document);
+    this._inputData = $('#data');
+    this._inputQuantidade = $('#quantidade');
+    this._inputValor = $('#valor');
+  }
+
+  adiciona(event) {
+
+    event.preventDefault();
+
+    let data = new Date(
+      //spread operator, permite que um iterável, por exemplo os elementos de um array, sejam dispostos em lugares que esperam um ou mais argumentos (para funções) ou elementos (para )
+      ...this._inputData.value
+        .split('-')
+        .map((item, index) => item - index % 2)
+    );
+
+    let negociacao = new Negociacao(
+      data,
+      this._inputQuantidade.value,
+      this._inputValor.value
+    );
+
+    console.log(negociacao);
+
+    let diaMesAno = negociacao.data.getDate()
+      + '/' + (negociacao.data.getMonth() + 1)
+      + '/' + negociacao.data.getFullYear();
+
+    console.log(diaMesAno);
+  }
+
+  //Por que let logger = console.log.bind(console); não faz diferença?
+}
