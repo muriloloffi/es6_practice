@@ -1,11 +1,6 @@
-class NegociacoesView {
+class NegociacoesView extends View {
 
-  constructor(elemento) {
-
-    this._elemento = elemento;
-  }
-
-  _template(model) {
+  template(model) {
 
     return `
       <table class="table table-hover table-bordered">
@@ -36,24 +31,18 @@ class NegociacoesView {
         <tfoot>
           <td colspan="3"></td>
         <!-- prettier-ignore-start -->
-          <td>${
-            model.negociacoes.reduce(
-              (total, negociacao) => total + negociacao.volume, 0.0
-            )
-            // (function() {
-            //   let total = 0;
-            //   model.negociacoes.forEach(negociacao => total += negociacao.volume);
-            //   return total;
-            // })()
+          <td>${model.negociacoes.reduce(
+            (total, negociacao) => total + negociacao.volume, 0.0
+          )
+          // (function() {
+          //   let total = 0;
+          //   model.negociacoes.forEach(negociacao => total += negociacao.volume);
+          //   return total;
+          // })()
           }</td>
         <!-- prettier-ignore-end -->
         </tfoot>
       </table>
     `;
-  }
-
-  update(model) {
-
-    this._elemento.innerHTML = this._template(model);
   }
 }

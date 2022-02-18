@@ -11,14 +11,17 @@ class NegociacaoController {
 
     //a view vai refletir os dados da listaNegociacoes quando o controller é carregado
     this._negociacoesView.update(this._listaNegociacoes);
+    this._mensagem = new Mensagem();
+    this._mensagemView = new MensagemView($('#mensagemView'));
   }
 
   adiciona(event) {
-    console.log(event);
 
     event.preventDefault();
     this._listaNegociacoes.adiciona(this._criaNegociacao());
     this._negociacoesView.update(this._listaNegociacoes);
+    this._mensagem.texto = 'Adicionado com sucesso!';
+    this._mensagemView.update(this._mensagem);
     this._limpaFormulario();
   }
 
